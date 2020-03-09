@@ -1,2 +1,2 @@
 - GERMANY_EPSG31468.shp - Boundary of Germany; projection: EPSG 31468
-- DOY_[PLANT]-[PHASE]_[YEAR].shp - ESRI shape file with phase-specific temperature sums -> Download https://www.dropbox.com/transfer/AAAAALLrvfdMZbfN3zxS59uD1CNwUb4-RiJCy9_Gn1z6RzFfSiiTzY
+- DOY_[PLANT]-[PHASE]_[YEAR].shp - ESRI shape file with phase-specific temperature sums -> Download: https://www.dropbox.com/transfer/AAAAALLrvfdMZbfN3zxS59uD1CNwUb4-RiJCy9_Gn1z6RzFfSiiTzY
