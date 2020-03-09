@@ -35,7 +35,7 @@ colnames(df.t.sum) <- c("YEAR","T.SUM","PHASE", "DOY")
 
 setwd(OUT.DIR)
 #Export intersection result
-write.csv2(df.t.sum, paste(PLANT,"_DOY-HS",c(".csv"),sep=""),
+write.csv2(df.t.sum, paste(PLANT,"_DOY-TS",c(".csv"),sep=""),
            row.names = FALSE)
 
 df.t.sum.median <- data.frame(aggregate(df.t.sum[c(2,4)], 
@@ -47,13 +47,10 @@ df.t.sum.median$T.SUM <- round(df.t.sum.median$T.SUM,0)
 df.t.sum.median$DOY <- round(df.t.sum.median$DOY,0)
 df.t.sum.median$PLANT <- PLANT
 write.csv2(df.t.sum.median, 
-           paste(PLANT,"_DOY-HS_agg",c(".csv"),sep=""),
+           paste(PLANT,"_DOY-TS_agg",c(".csv"),sep=""),
            row.names = FALSE)
 
-#write.csv2(df.t.sum, paste("Temperatursummen_",PLANT,c(".csv"),sep=""))
-
-
-
+df.t.sum <- read.csv2(paste(PLANT,"_DOY-TS",c(".csv"),sep=""))
 
 #plot
 #colors
@@ -136,14 +133,6 @@ if(PLANT==311 | PLANT==313){
              "#F46D43") #30
 }
 
-
-#311;"Apfel, frühe Reife";29;"Pflückreife Beginn"
-#311;"Apfel, frühe Reife";5;"Blüte Beginn"
-#311;"Apfel, frühe Reife";3;"Austrieb Beginn"
-#311;"Apfel, frühe Reife";6;"Vollblüte"
-#311;"Apfel, frühe Reife";7;"Blüte Ende"
-#311;"Apfel, frühe Reife";32;"herbstlicher Blattfall"
-
 #automatic range detection
 df.range <- data.frame("range"=NULL)
 df.median <<- data.frame("median"=NULL)
@@ -165,10 +154,10 @@ for(PHASE in PHASES){
 
 #density plot
 setwd(file.path(OUT.DIR))
-pdf(paste("HS_",PLANT,c(".pdf"),sep=""), 
+pdf(paste("TS_",PLANT,c(".pdf"),sep=""), 
     height=4,width=8)
 plot(density(df.t.sum[which(df.t.sum$PHASE==min(PHASES)),]$T.SUM,na.rm=TRUE),
- xlim=range(density(df.t.sum$T.SUM)[[1]]),
+ xlim=c((-max(density(df.t.sum$T.SUM)[[1]])/10),max(density(df.t.sum$T.SUM)[[1]])),
  ylim=c(0,max(df.range)),
  main=paste(PLANT),
  xlab= paste("Durchschnittliche Temperatursummen für",min(YEARS),"bis",max(YEARS)),
@@ -195,7 +184,7 @@ dev.off()
 pdf(paste("DOY_",PLANT,c(".pdf"),sep=""), 
     height=4,width=8)
 plot(density(df.t.sum[which(df.t.sum$PHASE==min(PHASES)),]$DOY,na.rm=TRUE),
-     xlim=c(0,365),
+     xlim=c(-50,365),
      ylim=c(0,max(df.range.DOY)),
      main=paste(PLANT),
      xlab= paste("Phasenspezifische Kalendertage für",min(YEARS),"bis",max(YEARS)),
@@ -224,5 +213,3 @@ legend("left", title="PHASE",
        fill=col.p,bty="n")
 dev.off()
 }
-
-
