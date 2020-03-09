@@ -14,10 +14,11 @@ OUT.DIR = ".../_git/EMRA_fTemperatureSum/output/"
 FUNC.DIR = ".../_git/EMRA_fTemperatureSum/functions/"
 YEARS=1993:2018
 #-----------------------------------------------------------------------------------------------------
-#Import functions
+#Import and excecute functions
 #-----------------------------------------------------------------------------------------------------
 source(file.path(FUNC.DIR,"fPackages.R"))
 source(file.path(FUNC.DIR,"fTemperatureSum.R"))
+
 PLANT=202#Winter Wheat
 PHASES=c(10,12,15,18,19,21,24)
 fTemperatureSum(TS.SHP=TS.SHP,
