@@ -1,0 +1,2 @@
+- GERMANY_EPSG31468.shp - Boundary of Germany; projection: EPSG 31468 (https://spatialreference.org)
+- DOY_[PLANT]-[PHASE]_[YEAR].shp - ESRI shape file with phase-specific temperature sums
